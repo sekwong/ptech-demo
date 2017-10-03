@@ -1,0 +1,45 @@
+{
+  "name": "API_boiler_plate",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "serve": "npm install && npm run build && node ./dist/index.js",
+    "build": "npm run clear && babel src --out-dir dist --copy-files",
+    "test": "jest --coverage --forceExit --runInBand",
+    "clear": "rimraf ./dist",
+    "start": "babel-watch ./src/index.js"
+  },
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "change-case": "^3.0.1",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.1",
+    "mongoose": "^4.11.13",
+    "require-dir": "^0.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-watch": "^2.0.7",
+    "eslint-config-recommended": "^1.5.0",
+    "jest": "^21.2.1",
+    "mockingoose": "^2.3.0",
+    "rimraf": "^2.6.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "./node_modules/",
+      "./dist"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "collectCoverage": true
+  }
+}

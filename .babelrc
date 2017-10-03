@@ -1,0 +1,17 @@
+{
+"ignore": [
+		"**/__mocks__/*.*",
+		"**/__test__/*.*"
+	],
+  "passPerPreset": true,
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "6.10"
+        }
+      }
+    ]
+  ]
+}
