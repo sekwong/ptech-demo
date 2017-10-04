@@ -1,9 +1,4 @@
 {
-"ignore": [
-		"**/__mocks__/*.*",
-		"**/__test__/*.*"
-	],
-  "passPerPreset": true,
   "presets": [
     [
       "env",
@@ -13,5 +8,6 @@
         }
       }
     ]
-  ]
+  ],
+  "passPerPreset": true
 }

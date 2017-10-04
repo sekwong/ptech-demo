@@ -1,29 +1,31 @@
 // src/routes/users.js
+import userController from '../controllers/userController';
 
 function userRouter(router) {
   // This will handle the url calls for /users/:user_id
-	router.route('/:userId')
-  .get(function(req, res, next) {
-    // Return user
-  }) 
-  .put(function(req, res, next) {
-    // Update user
-  })
-  .patch(function(req, res,next) {
-    // Patch
-  })
-  .delete(function(req, res, next) {
-    // Delete record
-  });
+  router
+    .route('/:id')
+    .get((req, res) => {
+      userController.show(req, res);
+    })
+    .put((req, res) => {
+      // Update user
+    })
+    .patch((req, res) => {
+      // Patch
+    })
+    .delete((req, res) => {
+      // Delete record
+    });
 
-  router.route('/')
-  .get(function(req, res, next) {
-    // Logic for GET /users routes
-  })
-	.post(function(req, res, next) {
-    // Create new user
-  });
-};
+  router
+    .route('/')
+    .get((req, res) => {
+      userController.list(req, res);
+    })
+    .post((req, res) => {
+      // Create new user
+    });
+}
 
 export default userRouter;
-

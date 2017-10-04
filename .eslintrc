@@ -6,7 +6,7 @@
     "jest": true
   },
   "extends": [
-    "recommended/node"
+    "airbnb"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
