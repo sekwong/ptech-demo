@@ -1,27 +1,44 @@
 // src/controllers/userController.js
 
-import userModel from '../models/userModel';
+import User from '../models/userModel';
 
 const userController = {
   list: async (req, res) => {
-    const users = await userModel.find();
+    const users = await User.find();
     return res.json(users);
   },
+
   show: async (req, res) => {
     const id = req.params.id;
-    try {
-      const user = await userModel.findOne({ _id: id });
-      if (!user) {
-        return res.status(404).json({
-          message: `User id=${id} not found`,
-        });
-      }
-      return res.json(user);
-    } catch (e) {
-      return res.status(500).json({
-        message: 'Error getting user.',
+    const user = await User.findOne({ _id: id });
+    if (!user) {
+      return res.status(404).json({
+        message: `User id=${id} not found`,
       });
     }
+    return res.json(user);
+  },
+
+  create: async (req, res) => {
+    const user = new User(req.body);
+    const savedUser = await user.save();
+    if (!savedUser) {
+      return res.status(500).json({
+        message: 'Error saving user',
+      });
+    }
+    return res.json(savedUser);
+  },
+
+  update: async (req, res) => {
+    const id = req.params.id;
+    const updated = await User.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true });
+    if (!updated) {
+      return res.status(500).json({
+        message: 'Error updating user',
+      });
+    }
+    return res.json(updated);
   },
 };
 

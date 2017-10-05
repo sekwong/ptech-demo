@@ -9,7 +9,7 @@ function userRouter(router) {
       userController.show(req, res);
     })
     .put((req, res) => {
-      // Update user
+      userController.update(req, res);
     })
     .patch((req, res) => {
       // Patch
@@ -24,7 +24,7 @@ function userRouter(router) {
       userController.list(req, res);
     })
     .post((req, res) => {
-      // Create new user
+      userController.create(req, res);
     });
 }
 
