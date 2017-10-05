@@ -40,6 +40,17 @@ const userController = {
     }
     return res.json(updated);
   },
+
+  remove: async (req, res) => {
+    const id = req.params.id;
+    const removed = await User.findOneAndRemove({ _id: id });
+    if (!removed) {
+      return res.status(500).json({
+        message: 'Error removing user',
+      });
+    }
+    return res.json(removed);
+  },
 };
 
 export default userController;

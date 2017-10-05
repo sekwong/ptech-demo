@@ -116,3 +116,17 @@ describe('PUT /api/users/:id', () => {
     expect(response.statusCode).toBe(200);
   });
 });
+
+describe('DELETE /api/user/:id', () => {
+  test('it should DELETE selected user', async () => {
+    mockingoose.User.toReturn({ ok: 1 }, 'findOneAndRemove');
+    const response = await supertest(app).delete('/api/users/59d5a497a5384609f05b0c69');
+    expect(response.statusCode).toBe(200);
+  });
+
+  test.skip('it should return error on removing fail', async () => {
+    mockingoose.User.toReturn(new Error(), 'findOneAndRemove');
+    const response = await supertest(app).delete('/api/users/fail-to-remove-id');
+    expect(response.statusCode).toBe(500);
+  });
+});

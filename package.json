@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "npm install && npm run build && node ./dist/server.js",
     "build": "npm run clear && babel src --out-dir dist --copy-files",
-    "test": "jest --watch",
+    "test": "jest --watch --coverage",
     "clear": "rimraf ./dist",
     "start": "babel-watch ./src/server.js"
   },

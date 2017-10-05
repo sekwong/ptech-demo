@@ -15,7 +15,7 @@ function userRouter(router) {
       // Patch
     })
     .delete((req, res) => {
-      // Delete record
+      userController.remove(req, res);
     });
 
   router
