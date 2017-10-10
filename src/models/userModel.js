@@ -10,6 +10,5 @@ const userSchema = new Schema({
   //   ref: 'User',
   // },
 });
-
 const userModel = mongoose.model('User', userSchema);
 export default userModel;
