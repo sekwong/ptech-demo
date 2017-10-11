@@ -1,6 +1,7 @@
 // src/controllers/routeController.js
 
 import Route from '../models/routeModel';
+import Node from '../models/nodeModel';
 
 const routeController = {
   list: async (req, res) => {
@@ -27,12 +28,26 @@ const routeController = {
         message: 'Error saving route',
       });
     }
+    const node = await Node.findOne({ _id: route.fromNodeId });
+    if (node) {
+      node.routes.push(savedRoute);
+      await node.save();
+    }
     return res.json(savedRoute);
   },
 
   update: async (req, res) => {
     const id = req.params.id;
-    const updated = await Route.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true });
+    if (req.body.fromNodeId) {
+      return res.status(500).json({
+        message: 'Can not update read-only fromNodeId field',
+      });
+    }
+    const updated = await Route.findOneAndUpdate(
+      { _id: id },
+      { $set: req.body },
+      { new: true },
+    );
     if (!updated) {
       return res.status(500).json({
         message: 'Error updating route',
@@ -44,11 +59,10 @@ const routeController = {
   remove: async (req, res) => {
     const id = req.params.id;
     const removed = await Route.findOneAndRemove({ _id: id });
-    if (!removed) {
-      return res.status(500).json({
-        message: 'Error removing route',
-      });
-    }
+    const node = await Node.findOne({ routes: id });
+    const index = node.routes.indexOf(id);
+    node.routes.splice(index, 1);
+    await node.save();
     return res.json(removed);
   },
 };

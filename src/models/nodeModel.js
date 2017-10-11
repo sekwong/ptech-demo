@@ -8,6 +8,7 @@ const nodeSchema = new Schema(
     company: String,
     type: String,
     enable: { type: String, default: true },
+    routes: [{ type: mongoose.Schema.ObjectId, ref: 'Route' }],
   },
   { timestamps: true },
 );
