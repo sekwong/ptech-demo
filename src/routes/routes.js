@@ -3,10 +3,7 @@ import routeController from '../controllers/routeController';
 
 function routeRouter(router) {
   router.route('/path/:fromNodeId/:toNodeId').get((req, res) => {
-    res.json({
-      fromNodeId: req.params.fromNodeId,
-      toNodeId: req.params.toNodeId,
-    });
+    routeController.getPath(req, res);
   });
   router
     .route('/:id')
