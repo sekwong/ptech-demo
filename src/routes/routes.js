@@ -2,7 +2,12 @@
 import routeController from '../controllers/routeController';
 
 function routeRouter(router) {
-  // This will handle the url calls for /routes/:route_id
+  router.route('/path/:fromNodeId/:toNodeId').get((req, res) => {
+    res.json({
+      fromNodeId: req.params.fromNodeId,
+      toNodeId: req.params.toNodeId,
+    });
+  });
   router
     .route('/:id')
     .get((req, res) => {
@@ -10,9 +15,6 @@ function routeRouter(router) {
     })
     .put((req, res) => {
       routeController.update(req, res);
-    })
-    .patch((req, res) => {
-      // Patch
     })
     .delete((req, res) => {
       routeController.remove(req, res);
