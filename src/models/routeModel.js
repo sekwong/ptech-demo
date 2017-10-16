@@ -5,12 +5,12 @@ import shortid from 'shortid';
 const Schema = mongoose.Schema;
 const routeSchema = new Schema(
   {
-    id: { type: String, default: shortid.generate },
-    fromNodeId: { type: Schema.Types.ObjectId, required: true },
-    toNodeId: { type: Schema.Types.ObjectId, required: true },
+    _id: { type: String, default: shortid.generate },
+    fromNodeId: { type: String, required: true },
+    toNodeId: { type: String, required: true },
     cost: Number,
     time: Number,
-    enable: { type: String, default: true },
+    enabled: { type: Boolean, default: true },
     capacity: Number,
     startAt: Number,
     endAt: Number,
