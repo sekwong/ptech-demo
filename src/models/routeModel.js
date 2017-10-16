@@ -1,9 +1,11 @@
 // src/models/routeModel.js
 import mongoose from 'mongoose';
+import shortid from 'shortid';
 
 const Schema = mongoose.Schema;
 const routeSchema = new Schema(
   {
+    id: { type: String, default: shortid.generate },
     fromNodeId: { type: Schema.Types.ObjectId, required: true },
     toNodeId: { type: Schema.Types.ObjectId, required: true },
     cost: Number,

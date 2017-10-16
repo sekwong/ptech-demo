@@ -1,9 +1,11 @@
 // src/models/nodeModel.js
 import mongoose from 'mongoose';
+import shortid from 'shortid';
 
 const Schema = mongoose.Schema;
 const nodeSchema = new Schema(
   {
+    id: { type: String, default: shortid.generate },
     name: { type: String, required: true },
     company: String,
     type: String,
